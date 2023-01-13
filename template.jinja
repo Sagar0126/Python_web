@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Procurement Summary</title>
+    <style>
+        table, th, td {border: 1px solid whitesmoke;border-collapse: collapse; padding: 10px;}
+        .spa{
+            line-height: 20px;
+            padding: 20px;
+            background-color: white;
+        }
+        body{
+            background-color: whitesmoke;
+            font-size: medium;
+        }
+        .sku{
+            padding: 20px;
+            background-color: white; 
+            text-align: left;
+        }
+        .crate{
+            padding: 20px;
+            background-color: white;
+            text-align: left;
+        }
+        div{
+            margin-top: 20px;
+        }
+        .tex{
+            background-color: whitesmoke;
+            width: 400px;
+            border: none;
+            border-radius: 5px;
+            height: 30px;
+        }
+        table{
+          width:1000px;
+        }
+    </style>
+  </head>
+  <body>
+    <div class="spa">
+        <form>
+            <div class="li" style="display: inline;">
+                <label class="li" for="hub">Hub:<span style="color:red;">*</span></label><br>
+                <input class="tex" type="text" id="hub" name="hub" value="{{data.hub}}" requried>
+            </div>
+            <div class="li" style="display: block;position: absolute;margin-left: 450px;margin-top: -51px;">
+                <label class="li" for="grn">GRN:</label><br>
+                <input class="tex" type="text" id="grn" name="grn" value="{{data.grn}}" requried>
+            </div>
+            <div class="li" style="display: block;">
+                <label for="supplier">Supplier:<span style="color:red;">*</span></label><br>
+                <input class="tex" type="text" id="supplier" name="supplier" value="{{data.supplier}}" requried>
+            </div>
+            <div class="li" style="display: block;">
+                <label for="supplier_name">Supplier Name: </label><br>
+                <input class="tex" type="text" id="supplier_name" name="supplier_name" value="{{data.supplier_name}}">
+            </div>
+         </form>
+    </div>
+    <div class="sku">
+        <h2>SKU Summary</h2>
+    <table>
+      <tr>
+        <th><input type="checkbox">No.</th>
+        <th>SKU</th>
+        <th>SKU Description</th>
+        <th>Standard Crate Quantity</th>
+        <th>Producerd Quantity</th>
+      </tr>
+      {% for sku in data.sku_table %}
+        <tr>
+          <td><input type="checkbox">{{sku.idx}}</td>
+          <td>{{sku.sku}}</td>
+          <td>{{sku.sku_description}}</td>
+          <td>{{sku.standard_crate_quantity}}</td>
+          <td>{{sku.quantity}}</td>
+        </tr>
+      {% endfor %}
+    </table>
+    </div>
+    <div class="crate">
+        <h2>Crate Table</h2>
+    <table>
+      <tr>
+        <th><input type="checkbox">No.</th>
+        <th>Crate</th>
+        <th>SKU</th>
+        <th>Packed Quantity</th>
+        <th>Crate Weight</th>
+        <th>Is Final Crate</th>
+      </tr>
+      {% for crate in data.crate_table %}
+        <tr>
+          <td><input type="checkbox">{{crate.idx}}</td>
+          <td>{{crate.crate}}</td>
+          <td>{{crate.sku}}</td>
+          <td>{{crate.packed_quantity}}</td>
+          <td>{{crate.crate_weight}}</td>
+          <td>{{crate.is_final_crate}}</td>
+        </tr>
+      {% endfor %}
+    </table>
+    
+    </div>
+  </body>
+</html>
+
+
